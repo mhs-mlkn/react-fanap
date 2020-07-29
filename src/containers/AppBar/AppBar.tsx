@@ -1,7 +1,9 @@
 import React, { PropsWithChildren } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar, { AppBarProps } from "@material-ui/core/AppBar";
+import AppBar, {
+  AppBarProps as MuiAppBarProps
+} from "@material-ui/core/AppBar";
 import Toolbar, { ToolbarProps } from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
@@ -42,13 +44,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export type MyAppBarProps = {
+export type AppBarProps = {
   title?: string;
-  appBarProps?: AppBarProps;
+  appBarProps?: MuiAppBarProps;
   toolbarProps?: ToolbarProps;
 } & WithWidth;
 
-const MyAppBar = (props: PropsWithChildren<MyAppBarProps>) => {
+const MyAppBar = (props: PropsWithChildren<AppBarProps>) => {
   const { title, appBarProps, toolbarProps, width, children } = props;
   const classes = useStyles();
   const drawer = useDrawer();

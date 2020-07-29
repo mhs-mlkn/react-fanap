@@ -28,9 +28,9 @@ const Root = ({ appConfig }: { appConfig: AppConfig }) => {
   const selectedTheme = themes[themeID] || DefaultTheme;
   const { palette = {} } = selectedTheme;
   const options: ThemeOptions = {
-    direction: "rtl",
     ...selectedTheme,
-    palette: { ...palette, type }
+    palette: { ...palette, type },
+    direction: "rtl"
   };
   const theme = createMuiTheme(options);
 

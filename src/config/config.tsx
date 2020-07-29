@@ -6,7 +6,7 @@ import Loading from "components/Loading";
 import MailIcon from "@material-ui/icons/Mail";
 
 const config: AppConfig = {
-  analyticsProps: { trackingID: "UA-172951553-1" },
+  analyticsProps: { trackingID: process.env.REACT_APP_GA_TRACKING_ID || "" },
   landingPage,
   datepickerEnabled: true,
   drawer: {
@@ -35,14 +35,7 @@ const config: AppConfig = {
     fullContent: true,
     displaySignInPage: true
   },
-  routes: [
-    {
-      path: "/test",
-      component: React.lazy(() => import("components/Test")),
-      exact: true,
-      isPrivate: true
-    }
-  ],
+  routes: [],
   theme: {
     defaultThemeID: "default",
     defaultType: "light",
