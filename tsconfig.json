@@ -16,7 +16,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "declaration": true,
+    "declaration": false,
     "sourceMap": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -24,6 +24,5 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
-  },
-  "include": ["scr"]
+  }
 }
