@@ -24,5 +24,6 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
-  }
+  },
+  "include": ["scr/"]
 }
