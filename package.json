@@ -4,7 +4,13 @@
   "author": "mhs-mlkn",
   "private": false,
   "license": "MIT",
-  "repository": "https://github.com/mhs-mlkn/react-fanap.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhs-mlkn/react-fanap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mhs-mlkn/react-fanap/issues"
+  },
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
   "files": [
