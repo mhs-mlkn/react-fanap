@@ -25,5 +25,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },
-  "include": ["scr/"]
+  "include": ["scr"]
 }
