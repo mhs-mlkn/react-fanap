@@ -12,10 +12,10 @@
     "url": "https://github.com/mhs-mlkn/react-fanap/issues"
   },
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist/",
-    "src/index.d.ts"
+    "dist/"
   ],
   "dependencies": {},
   "peerDependencies": {
