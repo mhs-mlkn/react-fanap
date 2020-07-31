@@ -13,13 +13,10 @@ export const SignInAsync = lazy(() => import("containers/Auth"));
 
 const App = ({ appConfig }: { appConfig: AppConfig }) => {
   const configs = { ...config, ...appConfig };
-  const { auth, landingPage: LandingPage = false } = configs;
-  const {
-    Loading = LoadingComponent,
-    SignIn = SignInAsync
-  } = configs.components;
+  const { auth, components = {}, landingPage: LandingPage = false } = configs;
+  const { Loading = LoadingComponent, SignIn = SignInAsync } = components;
 
-  const { signInURL, fullContent, displaySignInPage } = auth;
+  const { signInURL, fullContent = true, displaySignInPage = true } = auth;
 
   return (
     <React.StrictMode>

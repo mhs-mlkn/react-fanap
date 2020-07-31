@@ -8,7 +8,6 @@ import MailIcon from "@material-ui/icons/Mail";
 const config: AppConfig = {
   analyticsProps: { trackingID: process.env.REACT_APP_GA_TRACKING_ID || "" },
   landingPage,
-  datepickerEnabled: true,
   drawer: {
     display: true,
     items: [
@@ -28,7 +27,7 @@ const config: AppConfig = {
       ]
     ]
   },
-  dispalyAppBar: true,
+  displayAppBar: true,
   auth: {
     isAuthenticated: () => false,
     signInURL: "/signin",

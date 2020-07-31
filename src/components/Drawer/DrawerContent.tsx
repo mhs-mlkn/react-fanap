@@ -16,7 +16,7 @@ const DrawerContent = (props: MenuListPorps) => {
     <Scrollbar>
       <List>
         {items
-          .filter(item => item.visible)
+          .filter(({ visible }) => visible ?? true)
           .map((item, index) => (
             <Item key={index} {...item} />
           ))}

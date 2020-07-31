@@ -8,9 +8,17 @@ export const SignInAsync = React.lazy(() => import("containers/Auth"));
 
 export const Routes = () => {
   const appConfig = useAppConfig();
-  const { routes, pageNotFound: NotFound = PageNotFound } = appConfig;
-  const { signInURL, fullContent, displaySignInPage } = appConfig.auth;
-  const { SignIn = SignInAsync } = appConfig.components;
+  const {
+    routes,
+    components = {},
+    pageNotFound: NotFound = PageNotFound
+  } = appConfig;
+  const {
+    signInURL,
+    fullContent = true,
+    displaySignInPage = true
+  } = appConfig.auth;
+  const { SignIn = SignInAsync } = components;
 
   return (
     <Switch>

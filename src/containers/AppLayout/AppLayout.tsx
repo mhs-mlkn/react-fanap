@@ -46,16 +46,16 @@ const useStyles = makeStyles(theme => ({
 export const AppLayout = () => {
   const classes = useStyles();
   const appConfig = useAppConfig();
-  const { components, drawer, dispalyAppBar } = appConfig;
+  const { components = {}, drawer, displayAppBar = true } = appConfig;
   const { Footer } = components;
 
   return (
     <div className={classes.root}>
       {drawer.display && <DrawerAsync />}
-      {dispalyAppBar && <AppBarAsync />}
+      {displayAppBar && <AppBarAsync />}
       <div className={classes.body}>
         <div className={classes.content}>
-          {dispalyAppBar && <div className={classes.offset} />}
+          {displayAppBar && <div className={classes.offset} />}
           <Routes />
         </div>
         {Footer && <FooterAsync component={Footer} />}

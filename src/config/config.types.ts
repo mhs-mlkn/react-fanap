@@ -6,13 +6,13 @@ import { PaletteType, ThemeOptions } from "@material-ui/core";
 export interface AppAuth {
   isAuthenticated: (appConfig: AppConfig) => boolean;
   signInURL: string;
-  fullContent: boolean;
-  displaySignInPage: boolean;
+  fullContent?: boolean;
+  displaySignInPage?: boolean;
 }
 
 export interface DrawerItemProps {
   text: string;
-  visible: boolean;
+  visible?: boolean;
   path?: string;
   icon?: JSX.Element;
   items?: Omit<DrawerItemProps, "items">[];
@@ -35,22 +35,21 @@ export interface AppTheme {
   lsKey?: string;
   defaultThemeID?: string;
   defaultType?: PaletteType;
-  themes: Record<string, ThemeOptions>;
+  themes?: Record<string, ThemeOptions>;
 }
 
 export interface AppConfig {
   auth: AppAuth;
   landingPage?: ComponentType;
   pageNotFound?: ComponentType;
+  displayAppBar?: boolean;
   drawer: AppDrawer;
-  dispalyAppBar: boolean;
-  datepickerEnabled: boolean;
-  routes: AppRoute[];
   theme: AppTheme;
-  components: {
+  routes: AppRoute[];
+  analyticsProps?: AnalyticsProps;
+  components?: {
     Loading?: ComponentType;
     Footer?: ComponentType;
     SignIn?: ComponentType;
   };
-  analyticsProps?: AnalyticsProps;
 }

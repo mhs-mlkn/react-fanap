@@ -24,7 +24,7 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const Root = ({ appConfig }: { appConfig: AppConfig }) => {
   const { theme: themeConfig } = appConfig;
   const { themeID, type } = useAppTheme();
-  const { themes } = themeConfig;
+  const { themes = {} } = themeConfig;
   const selectedTheme = themes[themeID] || DefaultTheme;
   const { palette = {} } = selectedTheme;
   const options: ThemeOptions = {
