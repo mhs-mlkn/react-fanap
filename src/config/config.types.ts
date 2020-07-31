@@ -25,11 +25,11 @@ export interface AppDrawer {
   itemComponent?: ComponentType<DrawerItemProps>;
 }
 
-export interface AppRoute extends RouteProps {
+export type AppRoute = {
   component: ComponentType<RouteChildrenProps<any>> | ComponentType<any>;
   isPrivate: boolean;
   fallbackComponent?: ComponentType<RouteChildrenProps<any>>;
-}
+} & RouteProps;
 
 export interface AppTheme {
   lsKey?: string;
