@@ -1,7 +1,8 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, RouteComponentProps } from "react-router-dom";
 import { AppRoute } from "config";
 import { useAppConfig } from "providers/Config";
+import { useAuth } from "providers/Auth";
 
 const PrivateRoute = (props: AppRoute) => {
   const {
@@ -9,15 +10,15 @@ const PrivateRoute = (props: AppRoute) => {
     fallbackComponent: FallbackComponent,
     ...rest
   } = props;
+  const auth = useAuth();
   const appConfig = useAppConfig();
-  const { auth } = appConfig || {};
-  const { isAuthenticated = () => false, signInURL = "/signin" } = auth || {};
+  const { signInURL = "/signin" } = appConfig.auth;
 
   return (
     <Route
       {...rest}
-      children={routeProps =>
-        isAuthenticated(appConfig) ? (
+      children={(routeProps: RouteComponentProps<any>) => {
+        return auth.isAuthenticated() ? (
           <Component {...routeProps} />
         ) : !!FallbackComponent ? (
           <FallbackComponent {...routeProps} />
@@ -29,8 +30,8 @@ const PrivateRoute = (props: AppRoute) => {
               state: { from: routeProps.location }
             }}
           />
-        )
-      }
+        );
+      }}
     />
   );
 };

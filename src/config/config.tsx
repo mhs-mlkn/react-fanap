@@ -6,7 +6,7 @@ import Loading from "components/Loading";
 import MailIcon from "@material-ui/icons/Mail";
 
 const config: AppConfig = {
-  analyticsProps: { trackingID: process.env.REACT_APP_GA_TRACKING_ID || "" },
+  analyticsProps: { trackingID: process.env.REACT_APP_GA_TRACKING_ID ?? "" },
   landingPage,
   drawer: {
     display: true,
@@ -17,24 +17,34 @@ const config: AppConfig = {
           path: "/test",
           visible: true,
           icon: <MailIcon />
-        },
-        {
-          text: "test2",
-          path: "/test2",
-          visible: true,
-          icon: <MailIcon />
         }
       ]
     ]
   },
   displayAppBar: true,
   auth: {
-    isAuthenticated: () => false,
+    sso: {
+      lsKey: "REACT_FANAP_SSO",
+      redirect_url:
+        process.env.REACT_APP_SSO_REDIRECT_URL ??
+        window.location.href.split("?")[0],
+      client_id: process.env.REACT_APP_SSO_CLIENT_ID ?? "",
+      login_url: process.env.REACT_APP_SSO_LOGIN_URL ?? "",
+      base_url: process.env.REACT_APP_SSO_BASE_URL ?? "",
+      user_info_url: process.env.REACT_APP_SSO_USER_INFO_URL ?? "",
+      maxTryOn401: 3
+    },
     signInURL: "/signin",
     fullContent: true,
     displaySignInPage: true
   },
-  routes: [],
+  routes: [
+    {
+      path: "/test",
+      component: () => <div>test</div>,
+      isPrivate: true
+    }
+  ],
   theme: {
     defaultThemeID: "default",
     defaultType: "light",

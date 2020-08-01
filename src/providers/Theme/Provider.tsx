@@ -5,12 +5,15 @@ import { PaletteType } from "@material-ui/core";
 
 const Provider = (props: PropsWithChildren<{ theme: AppTheme }>) => {
   const { theme: appTheme, children } = props;
-  const { lsKey = "theme", defaultThemeID = "default", defaultType = "light" } =
-    appTheme || {};
+  const {
+    lsKey = "REACT_FANAP",
+    defaultThemeID = "default",
+    defaultType = "light"
+  } = appTheme;
+  const themeIDKey = `${lsKey}:THEME_ID`;
+  const typeKey = `${lsKey}:THEME_TYPE`;
   const [themeID, setThemeID] = useState(defaultThemeID);
   const [type, setType] = useState(defaultType);
-  const themeIDKey = `${lsKey}:themeID`;
-  const typeKey = `${lsKey}:type`;
 
   useEffect(() => {
     const persistThemeID = localStorage.getItem(themeIDKey);

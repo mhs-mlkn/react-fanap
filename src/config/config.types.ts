@@ -3,11 +3,21 @@ import { AnalyticsProps } from "components/Analytics";
 import { RouteProps, RouteChildrenProps } from "react-router-dom";
 import { PaletteType, ThemeOptions } from "@material-ui/core";
 
+export interface SSO {
+  lsKey: string;
+  client_id: string;
+  redirect_url: string;
+  login_url: string;
+  base_url: string;
+  user_info_url: string;
+  maxTryOn401: number;
+}
+
 export interface AppAuth {
-  isAuthenticated: (appConfig: AppConfig) => boolean;
   signInURL: string;
   fullContent?: boolean;
   displaySignInPage?: boolean;
+  sso: SSO;
 }
 
 export interface DrawerItemProps {
@@ -26,7 +36,7 @@ export interface AppDrawer {
 }
 
 export type AppRoute = {
-  component: ComponentType<RouteChildrenProps<any>> | ComponentType<any>;
+  component: ComponentType<RouteChildrenProps<any>>;
   isPrivate: boolean;
   fallbackComponent?: ComponentType<RouteChildrenProps<any>>;
 } & RouteProps;

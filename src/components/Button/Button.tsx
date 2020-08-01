@@ -1,16 +1,14 @@
 import React, { PropsWithChildren } from "react";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Button, { ButtonProps as MuiButonProps } from "@material-ui/core/Button";
 
-const useStyles = makeStyles(
-  createStyles({
-    startIcon: {
-      marginRight: -4,
-      marginLeft: 8
-    }
-  })
-);
+const useStyles = makeStyles({
+  startIcon: {
+    marginRight: -4,
+    marginLeft: 8
+  }
+});
 
 export interface ButtonProps extends MuiButonProps {
   loading?: boolean;

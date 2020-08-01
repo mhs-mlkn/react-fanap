@@ -1,10 +1,10 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, RouteComponentProps } from "react-router-dom";
 import PrivateRoute from "containers/PrivateRoute";
 import PageNotFound from "components/PageNotFound";
 import { useAppConfig } from "providers/Config";
 
-export const SignInAsync = React.lazy(() => import("containers/Auth"));
+export const SignInAsync = React.lazy(() => import("containers/SignIn"));
 
 export const Routes = () => {
   const appConfig = useAppConfig();
@@ -29,14 +29,14 @@ export const Routes = () => {
           <Route
             key={i}
             {...route}
-            children={routeProps => <route.component {...routeProps} />}
+            children={(routeProps: RouteComponentProps<any>) => (
+              <route.component {...routeProps} />
+            )}
           />
         );
       })}
       {displaySignInPage && !fullContent && (
-        <Route path={signInURL} exact>
-          <SignIn />
-        </Route>
+        <Route path={signInURL} exact render={props => <SignIn {...props} />} />
       )}
       <Route>
         <NotFound />
