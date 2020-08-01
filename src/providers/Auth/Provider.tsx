@@ -33,7 +33,7 @@ class AuthProvider extends Component<propsType> {
     if (!!(access_token && refresh_token)) {
       this.accessToken = access_token;
       this.refreshToken = refresh_token;
-      this.saveInfo();
+      return this.saveInfo();
     } else {
       return Promise.reject("invalid sso tokens");
     }
