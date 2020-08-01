@@ -10,10 +10,8 @@ import {
 } from "utils";
 
 type propsType = PropsWithChildren<{ ssoConfig: SSO }>;
-type stateType = any;
 
-class AuthProvider extends Component<propsType, stateType> {
-  state = {};
+class AuthProvider extends Component<propsType> {
   private readonly accessTokenKey = `${this.props.ssoConfig.lsKey}:ACCESS_TOKEN`;
   private readonly refreshTokenKey = `${this.props.ssoConfig.lsKey}:REFRESH_TOKEN`;
   private readonly codeVerifierKey = `${this.props.ssoConfig.lsKey}:CODE_VERIFIER`;
