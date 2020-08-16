@@ -31,6 +31,8 @@ const SignIn = (props: RouteComponentProps) => {
       } catch (err) {
         setError(true);
         setLoading(false);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -39,7 +41,7 @@ const SignIn = (props: RouteComponentProps) => {
     );
     if (!!code) {
       fetchToken(code).then(() => {
-        setRedirect(state);
+        setRedirect(decodeURIComponent(state) || "/");
       });
     }
   }, [auth, error]);
@@ -47,7 +49,7 @@ const SignIn = (props: RouteComponentProps) => {
   const handleClick = () => {
     setLoading(true);
     const { from = "/" } = parseQueryString(window.location.search.slice(1));
-    window.location.href = auth.getLoginUrl(from.slice(1));
+    window.location.href = auth.getLoginUrl(from);
   };
 
   if (!!redirect) {

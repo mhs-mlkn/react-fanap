@@ -18,7 +18,7 @@ export * from "./providers/Theme";
 export { default as ThemeContext } from "./providers/Theme";
 export * from "./store";
 export { default as store } from "./store";
-export * from "utils";
+export * from "./utils";
 export * from "./components/Analytics";
 export { default as Analytics } from "./components/Analytics";
 export * from "./components/Button";
