@@ -3,16 +3,13 @@ import { Switch, Route, RouteComponentProps } from "react-router-dom";
 import PrivateRoute from "containers/PrivateRoute";
 import PageNotFound from "components/PageNotFound";
 import { useAppConfig } from "providers/Config";
+import { AppRoute } from "config";
 
 export const SignInAsync = React.lazy(() => import("containers/SignIn"));
 
-export const Routes = () => {
+export const Routes = ({ routes }: { routes: AppRoute[] }) => {
   const appConfig = useAppConfig();
-  const {
-    routes,
-    components = {},
-    pageNotFound: NotFound = PageNotFound
-  } = appConfig;
+  const { components = {}, pageNotFound: NotFound = PageNotFound } = appConfig;
   const {
     signInURL,
     fullContent = true,

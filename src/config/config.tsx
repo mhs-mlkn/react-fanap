@@ -38,7 +38,8 @@ const config: AppConfig = {
     fullContent: true,
     displaySignInPage: true
   },
-  routes: [
+  routes: [],
+  panelRoutes: [
     {
       path: "/test",
       component: () => <div>test</div>,

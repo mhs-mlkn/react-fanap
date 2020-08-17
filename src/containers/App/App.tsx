@@ -5,6 +5,7 @@ import config, { AppConfig } from "config";
 import { AppThemeProvider } from "providers/Theme";
 import { AuthProvider } from "providers/Auth";
 import Analytics from "components/Analytics";
+import Routes from "containers/Routes";
 import LoadingComponent from "components/Loading";
 import ErrorBoundary from "components/ErrorBoundary";
 import store from "store";
@@ -14,7 +15,12 @@ export const SignInAsync = lazy(() => import("containers/SignIn"));
 
 const App = ({ appConfig }: { appConfig: AppConfig }) => {
   const configs = { ...config, ...appConfig };
-  const { auth, components = {}, landingPage: LandingPage = false } = configs;
+  const {
+    auth,
+    routes,
+    components = {},
+    landingPage: LandingPage = false
+  } = configs;
   const { Loading = LoadingComponent, SignIn = SignInAsync } = components;
 
   const { signInURL, fullContent = true, displaySignInPage = true } = auth;
@@ -38,6 +44,7 @@ const App = ({ appConfig }: { appConfig: AppConfig }) => {
                         </>
                       </Route>
                     )}
+                    <Routes routes={routes} />
                     {displaySignInPage && fullContent && (
                       <Route
                         path={signInURL}

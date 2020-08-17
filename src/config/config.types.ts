@@ -56,6 +56,7 @@ export interface AppConfig {
   drawer: AppDrawer;
   theme: AppTheme;
   routes: AppRoute[];
+  panelRoutes: AppRoute[];
   analyticsProps?: AnalyticsProps;
   components?: {
     Loading?: ComponentType;

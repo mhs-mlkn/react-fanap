@@ -46,7 +46,12 @@ const useStyles = makeStyles(theme => ({
 export const AppLayout = () => {
   const classes = useStyles();
   const appConfig = useAppConfig();
-  const { components = {}, drawer, displayAppBar = true } = appConfig;
+  const {
+    panelRoutes,
+    components = {},
+    drawer,
+    displayAppBar = true
+  } = appConfig;
   const { Footer } = components;
 
   return (
@@ -56,7 +61,7 @@ export const AppLayout = () => {
       <div className={classes.body}>
         <div className={classes.content}>
           {displayAppBar && <div className={classes.offset} />}
-          <Routes />
+          <Routes routes={panelRoutes} />
         </div>
         {Footer && <FooterAsync component={Footer} />}
       </div>
