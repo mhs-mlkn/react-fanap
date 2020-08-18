@@ -44,7 +44,9 @@ const App = ({ appConfig }: { appConfig: AppConfig }) => {
                         </>
                       </Route>
                     )}
-                    {routes.map((route, i) => <PrivateRoute key={i} {...route} />}
+                    {routes.map((route, i) => (
+                      <PrivateRoute key={i} {...route} />
+                    ))}
                     {displaySignInPage && fullContent && (
                       <Route
                         path={signInURL}
