@@ -44,7 +44,6 @@ const App = ({ appConfig }: { appConfig: AppConfig }) => {
                         </>
                       </Route>
                     )}
-                    <Routes routes={routes} />
                     {displaySignInPage && fullContent && (
                       <Route
                         path={signInURL}
@@ -52,6 +51,7 @@ const App = ({ appConfig }: { appConfig: AppConfig }) => {
                         render={props => <SignIn {...props} />}
                       />
                     )}
+                    <Routes routes={routes} />
                     <Route>
                       <RootAsync appConfig={configs} />
                     </Route>
