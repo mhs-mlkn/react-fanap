@@ -6,6 +6,7 @@ import { useAuth } from "providers/Auth";
 
 const PrivateRoute = (props: AppRoute) => {
   const {
+    isPrivate,
     component: Component,
     fallbackComponent: FallbackComponent,
     ...rest
@@ -18,7 +19,7 @@ const PrivateRoute = (props: AppRoute) => {
     <Route
       {...rest}
       children={(routeProps: RouteComponentProps<any>) => {
-        return auth.isAuthenticated() ? (
+        return !isPrivate || auth.isAuthenticated() ? (
           <Component {...routeProps} />
         ) : !!FallbackComponent ? (
           <FallbackComponent {...routeProps} />
