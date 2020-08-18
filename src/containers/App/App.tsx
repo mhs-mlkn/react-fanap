@@ -5,7 +5,7 @@ import config, { AppConfig } from "config";
 import { AppThemeProvider } from "providers/Theme";
 import { AuthProvider } from "providers/Auth";
 import Analytics from "components/Analytics";
-import Routes from "containers/Routes";
+import PrivateRoute from "containers/PrivateRoute";
 import LoadingComponent from "components/Loading";
 import ErrorBoundary from "components/ErrorBoundary";
 import store from "store";
@@ -44,6 +44,7 @@ const App = ({ appConfig }: { appConfig: AppConfig }) => {
                         </>
                       </Route>
                     )}
+                    {routes.map((route, i) => <PrivateRoute key={i} {...route} />}
                     {displaySignInPage && fullContent && (
                       <Route
                         path={signInURL}
@@ -51,7 +52,6 @@ const App = ({ appConfig }: { appConfig: AppConfig }) => {
                         render={props => <SignIn {...props} />}
                       />
                     )}
-                    <Routes routes={routes} />
                     <Route>
                       <RootAsync appConfig={configs} />
                     </Route>
