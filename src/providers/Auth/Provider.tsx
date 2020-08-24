@@ -16,16 +16,12 @@ class AuthProvider extends Component<propsType> {
   private readonly refreshTokenKey = `${this.props.ssoConfig.lsKey}:REFRESH_TOKEN`;
   private readonly codeVerifierKey = `${this.props.ssoConfig.lsKey}:CODE_VERIFIER`;
 
-  private accessToken = "";
-  private refreshToken = "";
-  private codeVerifier = "";
+  private accessToken = localStorage.getItem(this.accessTokenKey) ?? "";
+  private refreshToken = localStorage.getItem(this.refreshTokenKey) ?? "";
+  private codeVerifier = localStorage.getItem(this.codeVerifierKey) ?? "";
 
   componentDidMount = () => {
-    this.accessToken = localStorage.getItem(this.accessTokenKey) ?? "";
-    this.refreshToken = localStorage.getItem(this.refreshTokenKey) ?? "";
-    this.codeVerifier = localStorage.getItem(this.codeVerifierKey) ?? "";
     const maxTryOn401 = this.props.ssoConfig.maxTryOn401;
-
     api.configAxios(this.accessToken, maxTryOn401, this.refreshSSOToken);
   };
 
