@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+import { ComponentType, PropsWithChildren } from "react";
 import { AnalyticsProps } from "components/Analytics";
 import { RouteProps, RouteChildrenProps } from "react-router-dom";
 import { PaletteType, ThemeOptions } from "@material-ui/core";
@@ -62,5 +62,6 @@ export interface AppConfig {
     Loading?: ComponentType;
     Footer?: ComponentType;
     SignIn?: ComponentType;
+    GlobalWrapper?: ComponentType<PropsWithChildren<any>>;
   };
 }

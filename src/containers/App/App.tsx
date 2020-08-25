@@ -21,7 +21,11 @@ const App = ({ appConfig }: { appConfig: AppConfig }) => {
     components = {},
     landingPage: LandingPage = false
   } = configs;
-  const { Loading = LoadingComponent, SignIn = SignInAsync } = components;
+  const {
+    GlobalWrapper = React.Fragment,
+    Loading = LoadingComponent,
+    SignIn = SignInAsync
+  } = components;
 
   const { signInURL, fullContent = true, displaySignInPage = true } = auth;
 
@@ -32,33 +36,35 @@ const App = ({ appConfig }: { appConfig: AppConfig }) => {
           <Provider store={store}>
             <AuthProvider ssoConfig={configs.auth.sso}>
               <AppThemeProvider theme={configs.theme}>
-                <BrowserRouter>
-                  <Switch>
-                    {LandingPage && (
-                      <Route path="/" exact>
-                        <>
-                          <LandingPage />
-                          {configs.analyticsProps && (
-                            <Analytics {...configs.analyticsProps} />
-                          )}
-                        </>
+                <GlobalWrapper>
+                  <BrowserRouter>
+                    <Switch>
+                      {LandingPage && (
+                        <Route path="/" exact>
+                          <>
+                            <LandingPage />
+                            {configs.analyticsProps && (
+                              <Analytics {...configs.analyticsProps} />
+                            )}
+                          </>
+                        </Route>
+                      )}
+                      {routes.map((route, i) => (
+                        <PrivateRoute key={i} {...route} />
+                      ))}
+                      {displaySignInPage && fullContent && (
+                        <Route
+                          path={signInURL}
+                          exact
+                          render={props => <SignIn {...props} />}
+                        />
+                      )}
+                      <Route>
+                        <RootAsync appConfig={configs} />
                       </Route>
-                    )}
-                    {routes.map((route, i) => (
-                      <PrivateRoute key={i} {...route} />
-                    ))}
-                    {displaySignInPage && fullContent && (
-                      <Route
-                        path={signInURL}
-                        exact
-                        render={props => <SignIn {...props} />}
-                      />
-                    )}
-                    <Route>
-                      <RootAsync appConfig={configs} />
-                    </Route>
-                  </Switch>
-                </BrowserRouter>
+                    </Switch>
+                  </BrowserRouter>
+                </GlobalWrapper>
               </AppThemeProvider>
             </AuthProvider>
           </Provider>
